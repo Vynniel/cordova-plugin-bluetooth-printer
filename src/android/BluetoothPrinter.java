@@ -112,6 +112,14 @@ public class BluetoothPrinter extends CordovaPlugin {
                 e.printStackTrace();
             }
             return true;
+        } else if (action.equals("feed")) {
+            try {
+                feed(callbackContext);
+            } catch (IOException e) {
+                Log.e(LOG_TAG, e.getMessage());
+                e.printStackTrace();
+            }
+            return true;
         }
         return false;
     }
@@ -351,6 +359,21 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmOutputStream.write(msg.getBytes());
             mmOutputStream.write(new byte[] { 29, 40, 107, 3, 0, 49, 81, 48 });
 
+            callbackContext.success("Data Sent");
+            return true;
+
+        } catch (Exception e) {
+            String errMsg = e.getMessage();
+            Log.e(LOG_TAG, errMsg);
+            e.printStackTrace();
+            callbackContext.error(errMsg);
+        }
+        return false;
+    }
+
+    boolean feed(CallbackContext callbackContext) throws IOException {
+        try {
+            mmOutputStream.write(new byte[] { 10 });
             callbackContext.success("Data Sent");
             return true;
 
