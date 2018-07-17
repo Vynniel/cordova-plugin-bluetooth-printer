@@ -11,13 +11,13 @@ A cordova plugin for bluetooth printer for android platform, which support text 
 Using the Cordova CLI and NPM, run:
 
 ```
-cordova plugin add https://github.com/srehanuddin/Cordova-Plugin-Bluetooth-Printer.git
+cordova plugin add https://github.com/marcelo-mcihels/Cordova-Plugin-Bluetooth-Printer.git
 ```
 
 
 
 ##Usage
-Get list of paired bluetooth printers
+Obtem lista de impressoras
 
 ```
 BTPrinter.list(function(data){
@@ -30,7 +30,7 @@ BTPrinter.list(function(data){
 ```
 
 
-Connect printer
+Conecta com impressora
 
 ```
 BTPrinter.connect(function(data){
@@ -43,7 +43,7 @@ BTPrinter.connect(function(data){
 ```
 
 
-Disconnect printer
+Desconecta da impressora
 
 ```
 BTPrinter.disconnect(function(data){
@@ -56,20 +56,7 @@ BTPrinter.disconnect(function(data){
 ```
 
 
-Disconnect printer
-
-```
-BTPrinter.disconnect(function(data){
-	console.log("Success");
-	console.log(data)
-},function(err){
-	console.log("Error");
-	console.log(err)
-})
-```
-
-
-Print simple string
+Imprime Texto
 
 ```
 BTPrinter.printText(function(data){
@@ -82,17 +69,7 @@ BTPrinter.printText(function(data){
 ```
 
 
-Print image
-
-```
-BTPrinter.printText(function(data){
-    console.log("Success");
-    console.log(data)
-},function(err){
-    console.log("Error");
-    console.log(err)
-}, "Image Base64 String")
-```
+Imprime Imagem (não funciona em 100% das impressoras)
 
 ```
 BTPrinter.print(function(data){
@@ -104,11 +81,37 @@ BTPrinter.print(function(data){
 }, "Base64 String of Image")
 ```
 
-
-POS printing
+Envia comando POS separado cada comando por espaço 
 
 ```
 BTPrinter.printPOSCommand(function(data){
+    console.log("Success");
+    console.log(data)
+},function(err){
+    console.log("Error");
+    console.log(err)
+}, "0C")
+//OC is a POS command for page feed
+```
+
+
+Print QRCode
+
+```
+BTPrinter.printQrCode(function(data){
+    console.log("Success");
+    console.log(data)
+},function(err){
+    console.log("Error");
+    console.log(err)
+}, "0C")
+//OC is a POS command for page feed
+```
+
+Feed
+
+```
+BTPrinter.printQrCode(function(data){
     console.log("Success");
     console.log(data)
 },function(err){
