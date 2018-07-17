@@ -104,19 +104,17 @@ BTPrinter.printQrCode(function(data){
 },function(err){
     console.log("Error");
     console.log(err)
-}, "0C")
-//OC is a POS command for page feed
+}, "conteudo do qr code")
 ```
 
 Feed
 
 ```
-BTPrinter.printQrCode(function(data){
+BTPrinter.feed(function(data){
     console.log("Success");
     console.log(data)
 },function(err){
     console.log("Error");
     console.log(err)
-}, "0C")
-//OC is a POS command for page feed
+})
 ```
