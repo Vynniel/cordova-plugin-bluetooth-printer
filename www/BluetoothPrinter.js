@@ -26,7 +26,7 @@ var BTPrinter = {
         exec(fnSuccess, fnError, "BluetoothPrinter", "printQrCode", [str]);
     },
     feed: function (fnSuccess, fnError) {
-        exec(fnSuccess, fnError, "BluetoothPrinter", "feed", [str]);
+        exec(fnSuccess, fnError, "BluetoothPrinter", "feed", []);
     }
 };
 
