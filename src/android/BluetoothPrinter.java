@@ -257,14 +257,11 @@ public class BluetoothPrinter extends CordovaPlugin {
         }
     }
 
-    // This will send data to bluetooth printer
     boolean printText(CallbackContext callbackContext, String msg) throws IOException {
         try {
 
+            mmOutputStream.write(new byte[] { 27, 97, 0 });
             mmOutputStream.write(msg.getBytes());
-
-            // tell the user data were sent
-            // Log.d(LOG_TAG, "Data Sent");
             callbackContext.success("Data Sent");
             return true;
 
