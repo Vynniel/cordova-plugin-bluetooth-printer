@@ -144,18 +144,12 @@ public class BluetoothPrinter extends CordovaPlugin {
             if (pairedDevices.size() > 0) {
                 JSONArray json = new JSONArray();
                 for (BluetoothDevice device : pairedDevices) {
-                    /*
-                     * Hashtable map = new Hashtable(); map.put("type", device.getType());
-                     * map.put("address", device.getAddress()); map.put("name", device.getName());
-                     * JSONObject jObj = new JSONObject(map);
-                     */
                     json.put(device.getName());
                 }
+                callbackContext.success(json);
             } else {
                 callbackContext.error("No Bluetooth Device Found");
             }
-            callbackContext.success(json);
-            // Log.d(LOG_TAG, "Bluetooth Device Found: " + mmDevice.getName());
         } catch (Exception e) {
             errMsg = e.getMessage();
             Log.e(LOG_TAG, errMsg);
