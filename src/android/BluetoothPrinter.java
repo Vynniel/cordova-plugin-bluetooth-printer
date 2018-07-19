@@ -260,6 +260,7 @@ public class BluetoothPrinter extends CordovaPlugin {
     boolean printText(CallbackContext callbackContext, String msg) throws IOException {
         try {
 
+            mmOutputStream.write(new byte[] { 10 });
             mmOutputStream.write(new byte[] { 27, 97, 0 });
             mmOutputStream.write(msg.getBytes());
             callbackContext.success("Data Sent");
@@ -296,6 +297,7 @@ public class BluetoothPrinter extends CordovaPlugin {
 
             bitmap.recycle();
 
+            mmOutputStream.write(new byte[] { 10 });
             mmOutputStream.write(bt);
 
             // tell the user data were sent
@@ -314,12 +316,9 @@ public class BluetoothPrinter extends CordovaPlugin {
 
     boolean printPOSCommand(CallbackContext callbackContext, byte[] buffer) throws IOException {
         try {
-            // mmOutputStream.write(("Inam").getBytes());
-            // mmOutputStream.write((((char)0x0A) + "10 Rehan").getBytes());
+            mmOutputStream.write(new byte[] { 10 });
             mmOutputStream.write(buffer);
-            // mmOutputStream.write(0x0A);
 
-            // tell the user data were sent
             Log.d(LOG_TAG, "Data Sent");
             callbackContext.success("Data Sent");
             return true;
@@ -341,6 +340,8 @@ public class BluetoothPrinter extends CordovaPlugin {
             length_high_byte = (byte) ((length >> 8) & 0xff);
 
             mmOutputStream.write(new byte[] { 27, 64 });
+            mmOutputStream.write(new byte[] { 10 });
+            mmOutputStream.write(new byte[] { 10 });
             mmOutputStream.write(new byte[] { 27, 97, 1 });
             mmOutputStream.write(new byte[] { 29, 76, 0, 0 });
             mmOutputStream.write(new byte[] { 29, 40, 107, 4, 0, 49, 65, 50, 0 });
