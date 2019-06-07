@@ -1,4 +1,4 @@
-package com.ru.cordova.printer.bluetooth;
+﻿package com.ru.cordova.printer.bluetooth;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -65,7 +65,7 @@ public class BluetoothPrinter extends CordovaPlugin {
                     e.printStackTrace();
                 }
             } else {
-                callbackContext.error("Bluetooth Device Not Found: " + name);
+                callbackContext.error("Dispositivo Bluetooth não encontrado: " + name);
             }
             return true;
         } else if (action.equals("disconnect")) {
@@ -131,7 +131,7 @@ public class BluetoothPrinter extends CordovaPlugin {
         try {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             if (mBluetoothAdapter == null) {
-                errMsg = "No bluetooth adapter available";
+                errMsg = "Nenhum adaptador bluetooth disponível";
                 Log.e(LOG_TAG, errMsg);
                 callbackContext.error(errMsg);
                 return;
@@ -148,7 +148,7 @@ public class BluetoothPrinter extends CordovaPlugin {
                 }
                 callbackContext.success(json);
             } else {
-                callbackContext.error("No Bluetooth Device Found");
+                callbackContext.error("Nenhum dispositivo Bluetooth encontrado");
             }
         } catch (Exception e) {
             errMsg = e.getMessage();
@@ -163,7 +163,7 @@ public class BluetoothPrinter extends CordovaPlugin {
         try {
             mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
             if (mBluetoothAdapter == null) {
-                Log.e(LOG_TAG, "No bluetooth adapter available");
+                Log.e(LOG_TAG, "Nenhum adaptador bluetooth disponível");
             }
             if (!mBluetoothAdapter.isEnabled()) {
                 Intent enableBluetooth = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -178,7 +178,7 @@ public class BluetoothPrinter extends CordovaPlugin {
                     }
                 }
             }
-            Log.d(LOG_TAG, "Bluetooth Device Found: " + mmDevice.getName());
+            Log.d(LOG_TAG, "Dispositivo Bluetooth encontrado: " + mmDevice.getName());
         } catch (Exception e) {
             String errMsg = e.getMessage();
             Log.e(LOG_TAG, errMsg);
@@ -199,7 +199,7 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmInputStream = mmSocket.getInputStream();
             beginListenForData();
             // Log.d(LOG_TAG, "Bluetooth Opened: " + mmDevice.getName());
-            callbackContext.success("Bluetooth Opened: " + mmDevice.getName());
+            callbackContext.success("Bluetooth aberto: " + mmDevice.getName());
             return true;
         } catch (Exception e) {
             String errMsg = e.getMessage();
@@ -263,7 +263,7 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmOutputStream.write(new byte[] { 10 });
             mmOutputStream.write(new byte[] { 27, 97, 0 });
             mmOutputStream.write(msg.getBytes());
-            callbackContext.success("Data Sent");
+            callbackContext.success("Dados enviados");
             return true;
 
         } catch (Exception e) {
@@ -301,8 +301,8 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmOutputStream.write(bt);
 
             // tell the user data were sent
-            // Log.d(LOG_TAG, "Data Sent");
-            callbackContext.success("Data Sent");
+            // Log.d(LOG_TAG, "Dados enviados");
+            callbackContext.success("Dados enviados");
             return true;
 
         } catch (Exception e) {
@@ -319,8 +319,8 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmOutputStream.write(new byte[] { 10 });
             mmOutputStream.write(buffer);
 
-            Log.d(LOG_TAG, "Data Sent");
-            callbackContext.success("Data Sent");
+            Log.d(LOG_TAG, "Dados enviados");
+            callbackContext.success("Dados enviados");
             return true;
         } catch (Exception e) {
             String errMsg = e.getMessage();
@@ -351,7 +351,7 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmOutputStream.write(msg.getBytes());
             mmOutputStream.write(new byte[] { 29, 40, 107, 3, 0, 49, 81, 48 });
 
-            callbackContext.success("Data Sent");
+            callbackContext.success("Dados enviados");
             return true;
 
         } catch (Exception e) {
@@ -366,7 +366,7 @@ public class BluetoothPrinter extends CordovaPlugin {
     boolean feed(CallbackContext callbackContext) throws IOException {
         try {
             mmOutputStream.write(new byte[] { 10 });
-            callbackContext.success("Data Sent");
+            callbackContext.success("Dados enviados");
             return true;
 
         } catch (Exception e) {
@@ -385,7 +385,7 @@ public class BluetoothPrinter extends CordovaPlugin {
             mmOutputStream.close();
             mmInputStream.close();
             mmSocket.close();
-            callbackContext.success("Bluetooth Disconnect");
+            callbackContext.success("Desconexão Bluetooth");
             return true;
         } catch (Exception e) {
             String errMsg = e.getMessage();
